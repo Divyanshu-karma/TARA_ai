@@ -55,4 +55,5 @@ Applied Mark: STARBUCKS
 Conflicting Mark: STARBUCKS COFFEE
 Serial: 85723897
 Composite Score: 0.93
+
 -------------------------
