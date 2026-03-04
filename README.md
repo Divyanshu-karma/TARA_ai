@@ -18,6 +18,65 @@
   - ▼
 - **JSON Object goes in for future analysis**
 
+# TARA AI – Trademark Risk Analysis System
+
+TARA AI analyzes a USPTO trademark application and produces a structured legal risk assessment based on TMEP guidelines.
+
+## Pipeline Flow
+- **Trademark Application JSON**
+  
+  ↓
+- **Pillar 1 — Structural Application Validation**
+  
+  ↓
+- **Pillar 2 — Identification of Goods/Services Analysis**
+  
+  ↓
+- **Pillar 3 — Multi-Class Legal Compliance Analysis**
+  
+  ↓
+- Output structural validation
+
+## Pillar 1 — TMEP §1401 Class & Structural Validation
+
+### Code Components
+- weaviate-client/
+- embedding/
+- services/
+- pillar1_output/
+
+### Purpose
+Validates Nice Classification and application structure.
+
+### Responsibilities
+- Validate international class numbers
+- Verify goods/services classification
+- Check specimen availability per class
+- Verify fees paid vs number of classes
+- Detect misclassified goods/services
+
+### Output-
+Class Selected: int
+Assessment: string
+Suggested Class: int
+Confidence: High | Medium | Low
+
+## Pillar 1 Knowledge Base
+Semantic + heuristic database derived from the Nice Classification system.
+Contains structured descriptions of all international classes.
+Database Structure:
+nice_goods → Goods classes 1–34,
+nice_services → Service classes 35–45.
+kknowledge_base/
+├── nice_goods/
+│     ├── class_01.json
+│     ├── class_02.json
+│     └── class_34.json
+├── nice_services/
+│     ├── class_35.json
+ │     ├── class_36.json
+ │     └── class_45.json
+
 # Trademark Conflict Analysis Module
 
 *(Autonomous USPTO Examiner System)*
