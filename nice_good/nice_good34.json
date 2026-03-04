@@ -1,0 +1,71 @@
+[
+    {
+        "title": "Tobacco and tobacco substitutes",
+        "description": "Tobacco products and tobacco substitutes, not for medical purposes.",
+        "keywords": [
+            "chewing tobacco",
+            "cigarettes containing tobacco substitutes, not for medical purposes",
+            "cigarettes*",
+            "cigarillos",
+            "cigars",
+            "flavourings for tobacco / flavorings for tobacco",
+            "herbs for smoking*",
+            "nicotine pouches for use as a tobacco substitute, not for medical purposes",
+            "snuff",
+            "tobacco"
+        ]
+    },
+    {
+        "title": "Electronic cigarettes and oral vaporizers",
+        "description": "Electronic cigarettes, oral vaporizers and related consumables for smokers.",
+        "keywords": [
+            "devices for heating tobacco for the purpose of inhalation",
+            "electronic cigarettes",
+            "flavourings for use in electronic cigarettes / flavorings for use in electronic cigarettes",
+            "liquid solutions for use in electronic cigarettes",
+            "oral vaporizers for smokers"
+        ]
+    },
+    {
+        "title": "Cigarettes, cigars and smoking articles",
+        "description": "Articles used for smoking, including accessories and containers related to their use.",
+        "keywords": [
+            "absorbent paper for tobacco pipes",
+            "ashtrays for smokers",
+            "books of cigarette papers",
+            "cigar cases",
+            "cigar cutters",
+            "cigar holders",
+            "cigarette cases",
+            "cigarette filters",
+            "cigarette holders",
+            "cigarette paper",
+            "cigarette tips",
+            "firestones for smokers",
+            "gas containers for cigar lighters",
+            "hookahs",
+            "humidors",
+            "lighters for smokers",
+            "mouthpieces for cigarette holders",
+            "pipe cleaners for tobacco pipes",
+            "pipe racks for tobacco pipes",
+            "pocket machines for rolling cigarettes",
+            "pouches for tobacco",
+            "snuff boxes",
+            "spittoons for tobacco users",
+            "tips of yellow amber for cigar and cigarette holders",
+            "tobacco jars",
+            "tobacco pipes",
+            "wicks adapted for cigarette lighters"
+        ]
+    },
+    {
+        "title": "Matches and related articles",
+        "description": "Matches and accessories for ignition purposes.",
+        "keywords": [
+            "match holders",
+            "matchboxes",
+            "matches"
+        ]
+    }
+]

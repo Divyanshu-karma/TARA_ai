@@ -1,0 +1,94 @@
+[
+    {
+        "title": "Beers and brewing preparations",
+        "description": "Beers and beer-based beverages, including brewing ingredients and preparations.",
+        "keywords": [
+            "barley wine [beer]",
+            "beer",
+            "beer wort",
+            "beer-based cocktails",
+            "dried hops for brewing beer",
+            "extracts of hops for making beer",
+            "frozen hops for brewing beer",
+            "grape ales",
+            "hop pellets for brewing beer",
+            "kvass",
+            "malt beer",
+            "malt wort",
+            "must",
+            "non-alcoholic beer",
+            "non-alcoholic beer-based cocktails",
+            "shandy",
+            "unfermented grape must"
+        ]
+    },
+    {
+        "title": "Mineral, aerated and table waters",
+        "description": "Mineral, aerated and other non-alcoholic waters for drinking.",
+        "keywords": [
+            "carbonated water / aerated water",
+            "lithia water",
+            "mineral water [beverages]",
+            "preparations for making carbonated water / preparations for making aerated water",
+            "seltzer water",
+            "soda water",
+            "table waters",
+            "waters [beverages]"
+        ]
+    },
+    {
+        "title": "Non-alcoholic beverages",
+        "description": "General non-alcoholic beverages, including soft drinks and specialty drinks.",
+        "keywords": [
+            "energy drinks",
+            "ginger beer / ginger ale",
+            "isotonic beverages",
+            "lemonades",
+            "non-alcoholic aloe vera drinks",
+            "non-alcoholic aperitifs",
+            "non-alcoholic beverages",
+            "non-alcoholic beverages flavoured with coffee / non-alcoholic beverages flavored with coffee",
+            "non-alcoholic beverages flavoured with tea / non-alcoholic beverages flavored with tea",
+            "non-alcoholic cider",
+            "non-alcoholic cocktails",
+            "non-alcoholic dried fruit beverages",
+            "non-alcoholic fruit juice beverages",
+            "non-alcoholic fruit nectars",
+            "non-alcoholic fruit vinegar beverages",
+            "non-alcoholic honey-based beverages",
+            "protein-enriched sports beverages",
+            "rice-based beverages, other than milk substitutes",
+            "sarsaparilla [non-alcoholic beverage]",
+            "sherbets [beverages] / sorbets [beverages]",
+            "smoothies",
+            "soft drinks",
+            "soya-based beverages, other than milk substitutes",
+            "tomato juice [beverage]",
+            "vegetable juices [beverages]",
+            "whey beverages"
+        ]
+    },
+    {
+        "title": "Fruit beverages and juices",
+        "description": "Fruit-based beverages and juices for drinking.",
+        "keywords": [
+            "fruit juices / fruit juice"
+        ]
+    },
+    {
+        "title": "Syrups and preparations for beverages",
+        "description": "Syrups, essences and other preparations for making non-alcoholic beverages.",
+        "keywords": [
+            "non-alcoholic essences for making beverages",
+            "non-alcoholic fruit extracts",
+            "orgeat",
+            "pastilles for effervescing beverages",
+            "powders for effervescing beverages",
+            "powders for making soft drinks",
+            "preparations for making non-alcoholic beverages",
+            "starch-based dry mixes for beverage preparation",
+            "syrups for beverages",
+            "syrups for lemonade"
+        ]
+    }
+]

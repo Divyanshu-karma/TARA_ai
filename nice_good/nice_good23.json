@@ -1,0 +1,48 @@
+[
+    {
+        "title": "Natural fibre yarns and threads for textile use",
+        "description": "Yarns and threads made of natural fibres for textile use, including spun fibres.",
+        "keywords": [
+            "chenille yarn",
+            "coir thread and yarn",
+            "cotton thread and yarn",
+            "darning thread and yarn",
+            "hemp thread and yarn",
+            "jute thread and yarn",
+            "linen thread and yarn",
+            "sewing thread and yarn",
+            "silk thread and yarn",
+            "spun cotton",
+            "spun silk",
+            "spun wool / worsted",
+            "woollen thread and yarn",
+            "spun thread and yarn",
+            "yarn* / thread*"
+        ]
+    },
+    {
+        "title": "Synthetic and artificial yarns and threads for textile use",
+        "description": "Yarns and threads made of synthetic or artificial materials for textile use.",
+        "keywords": [
+            "rayon thread and yarn",
+            "threads of plastic materials for textile use"
+        ]
+    },
+    {
+        "title": "Elastic, rubber and fibreglass threads for textile use",
+        "description": "Specialised elastic, rubber and fibreglass threads intended for textile applications.",
+        "keywords": [
+            "elastic thread and yarn for textile use",
+            "fibreglass thread for textile use / fiberglass thread for textile use",
+            "rubber thread for textile use"
+        ]
+    },
+    {
+        "title": "Embroidery and decorative threads for textile use",
+        "description": "Threads and yarns specifically for embroidery and decorative textile purposes, including metallic threads.",
+        "keywords": [
+            "embroidery thread and yarn",
+            "thread of metal for embroidery"
+        ]
+    }
+]

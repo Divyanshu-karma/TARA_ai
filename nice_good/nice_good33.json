@@ -1,0 +1,53 @@
+[
+    {
+        "title": "Alcoholic beverages, except beers",
+        "description": "Alcoholic beverages other than beer, including wines, spirits, liqueurs and mixed alcoholic drinks.",
+        "keywords": [
+            "alcoholic beverages containing fruit",
+            "alcoholic beverages, except beer",
+            "alcoholic seltzers",
+            "anise [liqueur]",
+            "anisette [liqueur]",
+            "aperitifs*",
+            "arrack [arak] / arak [arrack]",
+            "bitters",
+            "brandy",
+            "cider",
+            "cocktails*",
+            "curacao",
+            "digestifs [liqueurs and spirits]",
+            "distilled beverages",
+            "flavoured brewed alcoholic malt beverages, except beers / flavored brewed alcoholic malt beverages, except beers",
+            "gin",
+            "grain-based distilled alcoholic beverages",
+            "hydromel [mead] / mead [hydromel]",
+            "kirsch",
+            "liqueurs",
+            "makkoli",
+            "peppermint liqueurs",
+            "perry",
+            "piquette",
+            "pre-mixed alcoholic beverages, other than beer-based",
+            "rice alcohol",
+            "rice wine",
+            "rum",
+            "sake",
+            "soju",
+            "spirits [beverages]",
+            "sugarcane-based alcoholic beverages",
+            "vodka",
+            "whisky",
+            "wine",
+            "wine-based beverages"
+        ]
+    },
+    {
+        "title": "Alcoholic preparations for making beverages",
+        "description": "Alcoholic essences and extracts used in the preparation of alcoholic beverages.",
+        "keywords": [
+            "alcoholic essences",
+            "alcoholic extracts",
+            "alcoholic fruit extracts"
+        ]
+    }
+]

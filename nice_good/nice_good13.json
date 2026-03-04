@@ -1,0 +1,101 @@
+[
+    {
+        "title": "Firearms and weapons",
+        "description": "Firearms and military or sporting weapons, including guns, pistols, rifles, artillery and related weapon systems.",
+        "keywords": [
+            "air pistols [weapons]",
+            "artillery guns [cannons]",
+            "ballistic weapons / ballistic missiles",
+            "breeches of firearms",
+            "cannons",
+            "cruise missiles",
+            "firearms",
+            "firing platforms",
+            "flare pistols",
+            "gun carriages [artillery]",
+            "guns [weapons]",
+            "gunstocks",
+            "hammers for guns and rifles / hammers for guns / hammers for rifles",
+            "hand grenades",
+            "harpoon guns",
+            "harpoons adapted for harpoon guns",
+            "hunting firearms / sporting firearms",
+            "machine guns",
+            "mortars [firearms]",
+            "motorized weapons",
+            "noise-suppressors for guns",
+            "pistols [arms]",
+            "projectiles [weapons]",
+            "revolvers",
+            "rifles / carbines",
+            "rocket launchers",
+            "side arms [firearms]",
+            "sights, other than telescopic sights, for artillery",
+            "sights, other than telescopic sights, for firearms",
+            "starting pistols / starter pistols",
+            "tanks [weapons]",
+            "tear-gas weapons",
+            "torpedoes",
+            "trunnions for heavy weapons"
+        ]
+    },
+    {
+        "title": "Ammunition and projectiles",
+        "description": "Ammunition, cartridges and projectile components for use with firearms and other weapons.",
+        "keywords": [
+            "ammunition",
+            "ammunition for firearms",
+            "automatic firearm ammunition belts",
+            "belts adapted for ammunition",
+            "cartridge cases",
+            "cartridge loading apparatus",
+            "cartridge pouches",
+            "cartridges*",
+            "explosive cartridges",
+            "lead shot for hunting",
+            "powder horns",
+            "rifle barrels / gun barrels",
+            "rifle cases / gun cases",
+            "rockets [projectiles]",
+            "shells [projectiles]",
+            "shoulder straps for weapons / bandoliers for weapons",
+            "trigger guards for guns and rifles / trigger guards for rifles"
+        ]
+    },
+    {
+        "title": "Explosives",
+        "description": "Explosive substances and compositions for military, industrial or pyrotechnic use.",
+        "keywords": [
+            "acetyl-nitrocellulose",
+            "ammonium nitrate explosives",
+            "detonating caps, other than toys / percussion caps, other than toys",
+            "detonating fuses for explosives / firing lanyards for explosives",
+            "detonating plugs",
+            "detonators",
+            "dynamite",
+            "explosive powders",
+            "explosives",
+            "fuses for explosives",
+            "fuses for explosives, for use in mines",
+            "guncotton / pyroxylin",
+            "gunpowder",
+            "mines [explosives]",
+            "primings [fuses]",
+            "pyrophoric substances"
+        ]
+    },
+    {
+        "title": "Fireworks and pyrotechnic products",
+        "description": "Pyrotechnic articles and signalling devices, including fireworks, flares and explosive fog signals.",
+        "keywords": [
+            "Bengal lights",
+            "firecrackers",
+            "fireworks",
+            "fog signals, explosive",
+            "pyrotechnic products",
+            "rescue flares, explosive or pyrotechnic",
+            "signal rocket flares",
+            "sprays for personal defence purposes / sprays for personal defense purposes"
+        ]
+    }
+]
