@@ -69,13 +69,13 @@ nice_goods → Goods classes 1–34,
 nice_services → Service classes 35–45.
 kknowledge_base/
 ├── nice_goods/
-│     ├── class_01.json
-│     ├── class_02.json
-│     └── class_34.json
+class_01.json
+class_02.json ... till
+class_34.json
 ├── nice_services/
-│     ├── class_35.json
- │     ├── class_36.json
- │     └── class_45.json
+class_35.json
+class_36.json ... till
+class_45.json
 
 # Trademark Conflict Analysis Module
 
