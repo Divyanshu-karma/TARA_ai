@@ -1,0 +1,181 @@
+[
+    {
+        "title": "Legal advisory and representation services",
+        "description": "Legal services including consultancy, drafting, advocacy and representation.",
+        "keywords": [
+            "arbitration services",
+            "legal advice in responding to calls for tenders / legal advice in responding to requests for proposals [RFPs]",
+            "legal advocacy services",
+            "legal consultancy relating to patent mapping",
+            "legal conveyancing",
+            "legal document preparation services",
+            "legal drafting",
+            "legal process serving",
+            "legal research",
+            "legal research in the field of environmental protection",
+            "legal services in relation to the negotiation of contracts for others",
+            "legal services in the field of child protection",
+            "legal services in the field of immigration",
+            "legal services relating to licences",
+            "legal watching services",
+            "litigation services",
+            "notary services"
+        ]
+    },
+    {
+        "title": "Intellectual property and licensing services",
+        "description": "Legal services relating to intellectual property protection and licensing.",
+        "keywords": [
+            "copyright management",
+            "intellectual property consultancy",
+            "licensing [legal services] in the framework of software publishing",
+            "licensing of computer software [legal services]",
+            "licensing of intellectual property",
+            "monitoring intellectual property rights for legal advisory purposes",
+            "registration of domain names [legal services]",
+            "leasing of internet domain names"
+        ]
+    },
+    {
+        "title": "Dispute resolution and compliance services",
+        "description": "Arbitration, mediation and regulatory compliance auditing services.",
+        "keywords": [
+            "alternative dispute resolution services",
+            "mediation [legal services]",
+            "legal compliance auditing",
+            "regulatory compliance auditing"
+        ]
+    },
+    {
+        "title": "Security and protection services",
+        "description": "Security services for protection of individuals and tangible property.",
+        "keywords": [
+            "detective agency services",
+            "fire-fighting",
+            "guard services",
+            "inspection of factories for safety purposes",
+            "law enforcement",
+            "lifeguard services",
+            "medical alarm monitoring",
+            "monitoring of burglar and security alarms",
+            "night guard services",
+            "opening of security locks",
+            "personal background investigations",
+            "personal bodyguarding",
+            "physical security consultancy",
+            "rental of fire alarms",
+            "rental of fire extinguishers",
+            "rental of guard dogs",
+            "rental of life jackets",
+            "rental of protective clothing",
+            "rental of protective helmets",
+            "rental of safes",
+            "rental of video surveillance cameras",
+            "security guarding of facilities via remote monitoring systems",
+            "security screening of baggage",
+            "surveillance services by drone",
+            "tracking of stolen property"
+        ]
+    },
+    {
+        "title": "Investigation and tracing services",
+        "description": "Investigation, tracking and recovery services relating to persons and property.",
+        "keywords": [
+            "locating and tracking of lost property",
+            "locating and tracking of missing persons",
+            "lost property return",
+            "missing person investigations"
+        ]
+    },
+    {
+        "title": "Personal and social services",
+        "description": "Personal assistance and social services rendered to meet individual needs.",
+        "keywords": [
+            "adoption agency services",
+            "animal adoption services",
+            "babysitting",
+            "bereavement counselling / bereavement counseling",
+            "chaperoning / escorting in society [chaperoning]",
+            "concierge services",
+            "dog walking services",
+            "doula services",
+            "house sitting",
+            "individual colour analysis services relating to clothing selection / individual color analysis services relating to clothing selection",
+            "kimono dressing assistance",
+            "line sitting services",
+            "organising of personal possessions for others",
+            "personal letter writing",
+            "personal shopping for others",
+            "personal wardrobe styling consultancy",
+            "pet sitting",
+            "providing non-medical in-home care services for individuals",
+            "social introduction agency services"
+        ]
+    },
+    {
+        "title": "Dating and online social networking services",
+        "description": "Dating, matchmaking and online social networking services.",
+        "keywords": [
+            "dating services",
+            "marriage agency services",
+            "online social networking services"
+        ]
+    },
+    {
+        "title": "Funerary and memorial services",
+        "description": "Funeral, burial and cremation services.",
+        "keywords": [
+            "burial services",
+            "conducting funeral ceremonies",
+            "crematorium services",
+            "embalming services",
+            "funerary undertaking",
+            "mortuary cosmetologists' services / desairologists' services"
+        ]
+    },
+    {
+        "title": "Religious and ceremonial services",
+        "description": "Religious, spiritual and ceremonial services.",
+        "keywords": [
+            "conducting religious ceremonies",
+            "organization of religious meetings",
+            "planning and arranging of wedding ceremonies",
+            "releasing doves for special occasions",
+            "spiritual consultancy"
+        ]
+    },
+    {
+        "title": "Astrology and spiritual consultation services",
+        "description": "Astrological, divination and related spiritual advisory services.",
+        "keywords": [
+            "astrology consultancy",
+            "cartomancy services",
+            "horoscope casting",
+            "tarot card reading services for others"
+        ]
+    },
+    {
+        "title": "Clothing rental services",
+        "description": "Rental of clothing and personal attire.",
+        "keywords": [
+            "clothing rental",
+            "evening dress rental",
+            "rental of diving suits*"
+        ]
+    },
+    {
+        "title": "Political and civic services",
+        "description": "Services relating to political organization and lobbying.",
+        "keywords": [
+            "organization of political meetings",
+            "political lobbying services"
+        ]
+    },
+    {
+        "title": "Online platform moderation services",
+        "description": "Content moderation and oversight services for online communities.",
+        "keywords": [
+            "content moderation for internet chatrooms"
+        ]
+    }
+]

@@ -1,0 +1,161 @@
+[
+    {
+        "title": "Banking and financial transaction services",
+        "description": "Banking, monetary transactions, payment processing and related financial services.",
+        "keywords": [
+            "banking",
+            "mobile banking services",
+            "online banking",
+            "online banking services rendered in virtual environments",
+            "electronic funds transfer",
+            "electronic funds transfer provided via blockchain technology",
+            "electronic transfer of cryptocurrency",
+            "financial exchange of cryptocurrency",
+            "financial trading of cryptocurrency",
+            "e-wallet payment services",
+            "processing of credit card payments",
+            "processing of debit card payments",
+            "issuance of credit cards",
+            "issuance of travellers' cheques / issuance of travelers' checks",
+            "exchanging money",
+            "financial clearing",
+            "rental of payment terminals",
+            "savings bank services",
+            "stock exchange quotations"
+        ]
+    },
+    {
+        "title": "Financing, credit and investment services",
+        "description": "Financing, lending, credit, investment and capital management services.",
+        "keywords": [
+            "arranging finance for construction projects",
+            "capital investment",
+            "crowdfunding",
+            "debt advisory services",
+            "factoring",
+            "financing services",
+            "financial engineering",
+            "financial management",
+            "financial management of reimbursement payments for others",
+            "hire-purchase financing / lease-purchase financing",
+            "instalment loans",
+            "investment of funds",
+            "lending against security",
+            "loans [financing]",
+            "mortgage banking",
+            "mutual funds",
+            "provident fund services",
+            "retirement payment services",
+            "stocks and bonds brokerage"
+        ]
+    },
+    {
+        "title": "Insurance and underwriting services",
+        "description": "Insurance services, underwriting, actuarial and related consultancy services.",
+        "keywords": [
+            "accident insurance underwriting",
+            "actuarial services",
+            "administration of insurance plans",
+            "fire insurance underwriting",
+            "health insurance underwriting",
+            "insurance brokerage",
+            "insurance consultancy",
+            "insurance underwriting",
+            "life insurance underwriting",
+            "marine insurance underwriting",
+            "providing insurance information",
+            "surety services",
+            "warranty claims administration services"
+        ]
+    },
+    {
+        "title": "Financial appraisal, valuation and research",
+        "description": "Financial valuation, appraisal, analysis and research services.",
+        "keywords": [
+            "antique appraisal",
+            "art appraisal",
+            "business liquidation services, financial",
+            "cheque verification / check verification",
+            "financial analysis",
+            "financial appraisals in responding to calls for tenders / financial appraisals in responding to requests for proposals [RFPs]",
+            "financial consultancy",
+            "financial evaluation [insurance, banking, real estate]",
+            "financial evaluation of development costs relating to the oil, gas and mining industries",
+            "financial evaluation of standing timber / financial valuation of standing timber",
+            "financial evaluation of wool / financial valuation of wool",
+            "financial research",
+            "financial valuation of intellectual property assets",
+            "fiscal valuation",
+            "jewellery appraisal / jewelry appraisal",
+            "numismatic appraisal",
+            "preparation of quotes for cost estimation purposes",
+            "real estate appraisal",
+            "repair costs evaluation [financial appraisal]",
+            "stamp appraisal"
+        ]
+    },
+    {
+        "title": "Brokerage and monetary intermediation services",
+        "description": "Brokerage services relating to securities, business, real estate and other financial assets.",
+        "keywords": [
+            "brokerage*",
+            "brokerage of carbon credits",
+            "business brokerage",
+            "car broker services",
+            "financial customs brokerage services",
+            "pawnbrokerage",
+            "real estate brokerage",
+            "securities brokerage",
+            "stock brokerage services"
+        ]
+    },
+    {
+        "title": "Real estate services",
+        "description": "Real estate agency, management, rental and related property services.",
+        "keywords": [
+            "accommodation bureau services [apartments]",
+            "apartment house management",
+            "real estate agency services",
+            "real estate management",
+            "real estate services",
+            "rent collection",
+            "rental of apartments",
+            "rental of farms",
+            "rental of offices [real estate]",
+            "rental of offices for co-working",
+            "rental of pastures",
+            "rental of real estate"
+        ]
+    },
+    {
+        "title": "Fundraising and fiduciary services",
+        "description": "Charitable fundraising, financial sponsorship and fiduciary services.",
+        "keywords": [
+            "administration of financial affairs",
+            "charitable fund raising",
+            "credit bureau services",
+            "debt collection agency services",
+            "deposits of valuables",
+            "financial advice",
+            "financial advice relating to tax",
+            "financial patronage",
+            "financial sponsorship",
+            "issuance of gift certificates",
+            "issuance of prepaid gift cards",
+            "issuance of prepaid vouchers",
+            "organization of monetary collections",
+            "providing financial information",
+            "providing financial information via a website",
+            "providing rebates at participating establishments of others through use of a membership card",
+            "safe deposit services",
+            "trusteeship / fiduciary"
+        ]
+    },
+    {
+        "title": "Surety and bail services",
+        "description": "Bail bonding and related guarantee services.",
+        "keywords": [
+            "bail-bonding"
+        ]
+    }
+]

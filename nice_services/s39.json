@@ -1,0 +1,180 @@
+[
+    {
+        "title": "Passenger and goods transport services",
+        "description": "Transport of people, animals and goods by air, land, water or pipeline.",
+        "keywords": [
+            "air transport",
+            "ambulance transport",
+            "armoured-car transport / armored-car transport",
+            "barge transport",
+            "boat transport",
+            "bus transport",
+            "cable car transport",
+            "car transport",
+            "carting",
+            "courier services [messages or merchandise]",
+            "delivery of goods",
+            "delivery of goods by mail order",
+            "delivery of newspapers / newspaper delivery",
+            "ferry-boat transport",
+            "freight [shipping of goods]",
+            "freighting",
+            "guarded transport of valuables",
+            "hauling",
+            "marine transport",
+            "message delivery",
+            "parcel delivery",
+            "passenger transport",
+            "piloting",
+            "piloting of civilian drones",
+            "pleasure boat transport",
+            "railway transport",
+            "rescue operations [transport]",
+            "river transport",
+            "services for transporting legal documents",
+            "space transport",
+            "taxi transport",
+            "towing",
+            "tram transport / streetcar transport",
+            "transport",
+            "transport by pipeline",
+            "transport of captured carbon dioxide for others",
+            "transport of travellers",
+            "transport services for sightseeing tours",
+            "transporting furniture",
+            "vehicle breakdown towing services",
+            "water distribution",
+            "water supplying"
+        ]
+    },
+    {
+        "title": "Rental services relating to transport",
+        "description": "Rental of vehicles and equipment for transportation purposes.",
+        "keywords": [
+            "aircraft rental",
+            "boat rental",
+            "car rental",
+            "car sharing services",
+            "motor coach rental",
+            "railway coach rental",
+            "railway truck rental",
+            "rental of aircraft engines",
+            "rental of atmospheric diving suits",
+            "rental of delivery robots",
+            "rental of diving bells",
+            "rental of horses for transportation purposes",
+            "rental of motor racing cars",
+            "rental of navigational systems",
+            "rental of photography drones",
+            "rental of safety seats for children, for vehicles",
+            "rental of security drones",
+            "rental of surveillance drones",
+            "rental of tractors",
+            "rental of vehicle roof racks",
+            "rental of wheelchairs",
+            "subscription-based car rental services",
+            "vehicle rental"
+        ]
+    },
+    {
+        "title": "Storage and warehousing services",
+        "description": "Storage, warehousing and rental of storage facilities for preservation and guarding of goods.",
+        "keywords": [
+            "boat storage",
+            "car park services / parking lot services",
+            "cloakroom services / coat check services",
+            "cryogenic storage of biological tissues [warehousing]",
+            "garage rental",
+            "luggage storage",
+            "parking place rental",
+            "physical storage of electronically stored data or documents",
+            "providing information relating to storage services",
+            "refrigerator rental / frozen-food locker rental",
+            "rental of electric wine cellars",
+            "rental of freezers",
+            "rental of storage containers",
+            "rental of storage lockers",
+            "rental of warehouses",
+            "storage / warehousing",
+            "storage of captured carbon dioxide for others",
+            "storage of goods",
+            "temporary storage of keys"
+        ]
+    },
+    {
+        "title": "Packaging and delivery preparation services",
+        "description": "Packaging, wrapping and related preparation of goods for transport or delivery.",
+        "keywords": [
+            "bottling services",
+            "collection of household packaging for deposit return purposes",
+            "flower delivery",
+            "franking of mail",
+            "gift wrapping",
+            "packaging of goods",
+            "wrapping of goods"
+        ]
+    },
+    {
+        "title": "Travel arrangement and reservation services",
+        "description": "Arrangement and reservation services for travel and passenger transportation.",
+        "keywords": [
+            "arranging for travel visas and travel documents for persons travelling abroad",
+            "arranging of cruises",
+            "arranging of passenger transportation services for others via an online application",
+            "arranging of transportation for travel tours",
+            "booking of seats for travel",
+            "escorting of travellers",
+            "providing driving directions for travel purposes",
+            "providing transportation information",
+            "transport reservation",
+            "travel reservation"
+        ]
+    },
+    {
+        "title": "Freight brokerage and logistics services",
+        "description": "Freight brokerage, forwarding and transportation logistics services.",
+        "keywords": [
+            "freight brokerage [forwarding (Am.)] / freight brokerage",
+            "freight forwarding",
+            "locating and tracking of cargo for transportation purposes",
+            "locating and tracking of people for transportation purposes",
+            "shipbrokerage",
+            "stevedoring",
+            "transport brokerage",
+            "transportation logistics",
+            "unloading cargo"
+        ]
+    },
+    {
+        "title": "Operation of transport facilities and maritime services",
+        "description": "Operation of transport facilities, ports and maritime support services.",
+        "keywords": [
+            "ice-breaking",
+            "lighterage services",
+            "operating canal locks",
+            "refloating of ships",
+            "salvage of ships",
+            "salvaging",
+            "underwater salvage"
+        ]
+    },
+    {
+        "title": "Waste transport and environmental logistics",
+        "description": "Collection, transport and storage of waste and recyclable materials.",
+        "keywords": [
+            "collection of domestic and industrial waste and trash",
+            "collection of recyclable goods [transport]",
+            "transport and storage of waste / transport and storage of trash"
+        ]
+    },
+    {
+        "title": "Energy and utility distribution services",
+        "description": "Distribution and supply of energy, electricity and utilities.",
+        "keywords": [
+            "cash replenishment of automated teller machines",
+            "distribution of energy",
+            "electricity distribution",
+            "replenishment of vending machines"
+        ]
+    }
+]

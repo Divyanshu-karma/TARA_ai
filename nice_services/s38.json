@@ -1,0 +1,94 @@
+[
+    {
+        "title": "Data transmission and electronic communication services",
+        "description": "Services enabling transmission of digital data, messages and electronic communications.",
+        "keywords": [
+            "communications by computer terminals",
+            "communications by fibre optic networks / communications by fiber optic networks",
+            "computer aided transmission of messages and images",
+            "electronic bulletin board services [telecommunications services]",
+            "facsimile transmission",
+            "message sending",
+            "providing access to blockchain networks",
+            "providing access to databases",
+            "providing telecommunications connections to a global computer network",
+            "providing user access to global computer networks",
+            "rental of access time to global computer networks",
+            "rental of facsimile apparatus",
+            "rental of message sending apparatus",
+            "rental of modems",
+            "rental of telecommunication equipment",
+            "streaming of data",
+            "telecommunications routing and junction services",
+            "transmission of digital files",
+            "transmission of electronic mail",
+            "transmission of greeting cards online",
+            "transmission of podcasts"
+        ]
+    },
+    {
+        "title": "Telephone and voice communication services",
+        "description": "Telephone, mobile and voice-based telecommunication services.",
+        "keywords": [
+            "communications by telephone",
+            "mobile telephone communication services / cell phone communication services",
+            "paging services [radio, telephone or other means of electronic communication]",
+            "rental of smartphones",
+            "rental of telephone answering apparatus",
+            "rental of telephones",
+            "telephone services",
+            "voice mail services"
+        ]
+    },
+    {
+        "title": "Broadcasting services",
+        "description": "Radio, television and wireless broadcasting services.",
+        "keywords": [
+            "cable television broadcasting",
+            "radio broadcasting",
+            "radio communications",
+            "satellite transmission",
+            "television broadcasting",
+            "wireless broadcasting"
+        ]
+    },
+    {
+        "title": "Online communication platforms",
+        "description": "Provision of online chatrooms, forums and collaborative communication platforms.",
+        "keywords": [
+            "providing chatrooms in virtual environments",
+            "providing internet chatrooms",
+            "providing online forums",
+            "providing online virtual reality-based forums for work collaboration"
+        ]
+    },
+    {
+        "title": "Telegraph and telex services",
+        "description": "Telegraph, telex and related traditional telecommunication services.",
+        "keywords": [
+            "communications by telegrams",
+            "telegraph services",
+            "telex services",
+            "transmission of telegrams"
+        ]
+    },
+    {
+        "title": "Teleconferencing and video transmission services",
+        "description": "Teleconferencing, videoconferencing and on-demand video transmission services.",
+        "keywords": [
+            "providing telecommunication channels for teleshopping services",
+            "teleconferencing services",
+            "video-on-demand transmission",
+            "videoconferencing services"
+        ]
+    },
+    {
+        "title": "Telecommunications information and agency services",
+        "description": "Information and agency services relating to telecommunications.",
+        "keywords": [
+            "geolocation services [telecommunications services]",
+            "news agency services",
+            "providing information in the field of telecommunications"
+        ]
+    }
+]
