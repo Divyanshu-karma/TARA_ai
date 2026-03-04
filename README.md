@@ -1,3 +1,23 @@
+# TradeMark Application Frontend Workflow
+
+- **User Uploads TradeMark Application PDF**
+  - │
+  - ▼
+- **Frontend**
+  - │
+  - ▼
+- **FastAPI Backend**
+  - │
+  - `PDFProcessor.process_pdf()`
+  - │
+  - ▼
+- **JSON Output Generated**
+  - │
+  - Saved to: `TM/<serial>.json`
+  - │
+  - ▼
+- **JSON Object goes in for future analysis**
+
 # Trademark Conflict Analysis Module
 
 *(Autonomous USPTO Examiner System)*
