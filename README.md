@@ -67,7 +67,7 @@ Contains structured descriptions of all international classes.
 Database Structure:
 nice_goods → Goods classes 1–34,
 nice_services → Service classes 35–45.
-kknowledge_base/
+knowledge_base/
 ├── nice_goods/
 class_01.json
 class_02.json ... till
@@ -133,19 +133,19 @@ It also handles edge cases:
 ### 4. Similarity Analysis (DuPont Factor-1)
 The module computes similarity between:
 a) Applied Mark (user input) vs b) Conflicting Mark (retrieved trademark)
-their three similarity signals are evaluated:
-d) Visual similarity — Method: Jaro-Winkler — Purpose: Textual resemblance.
-e) Phonetic similarity — Method: Double Metaphone — Purpose: Sound similarity.
-f) Semantic similarity — Method: Sentence-BERT — Purpose: Meaning similarity.
+their is three similarity signals are evaluated:
+1) Visual similarity — Method: Jaro-Winkler — Purpose: Textual resemblance.
+2) Phonetic similarity — Method: Double Metaphone — Purpose: Sound similarity.
+3) Semantic similarity — Method: Sentence-BERT — Purpose: Meaning similarity.
 'these are combined into a composite score.
 
 ### 5. Conflict Ranking
 All retrieved trademarks are scored and ranked.
 e.g., Example output:
 applied Mark: Marriott International 
-dconflicting Mark: MARRIOTT INTERNATIONAL'S LI YU 
-sSerial: 85738109 
-tComposite Score: 0.879 The system displays the Top-10 highest-risk conflicts.
+conflicting Mark: MARRIOTT INTERNATIONAL'S LI YU 
+Serial: 85738109 
+Composite Score: 0.879 The system displays the Top-10 highest-risk conflicts.
 
 ### 6. Result Archival
 All analysis results are stored as JSON for future review.
@@ -154,7 +154,7 @@ e.g., Example: `analysis_output/factor1_Marriott_20260305_101522.json`
 ## Running the System:
 1. Install dependencies:
 pip install -r requirements.txt 
-tMain dependencies include:
+Main dependencies include:
 sentence-transformers, scikit-learn, jellyfish, requests, python-dotenv.
 2. Configure environment variables:
 Create a `.env` file with:
