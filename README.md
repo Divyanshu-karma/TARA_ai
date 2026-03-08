@@ -111,7 +111,7 @@ Queries the Atom Trademark Search API using:
 - International class (optional)
 - Filing status (active / pending / dead)
 
-The system retrieves up to 300 trademark records (3 pages × 100 records).
+The system retrieves up to 1000 trademark records (10 pages × 100 records).
 
 ### 2. Data Storage
 API responses are saved locally for:
@@ -157,18 +157,36 @@ pip install -r requirements.txt
 tMain dependencies include:
 sentence-transformers, scikit-learn, jellyfish, requests, python-dotenv.
 2. Configure environment variables:
-cCreate a `.env` file with:
-atm_api_key=your_api_key 
-atm_user_id=your_user_id 
-c3. Run the analysis:
+Create a `.env` file with:
+ATOM_API_KEY=your_api_key 
+ATOM_USER_ID=your_user_id 
+3. Run the analysis:
 pc main.py 
-eExample input:
-dmark_text: STARBUCKS 
-dclass : 030 
-dstatus (active/pending/dead/all): active 
-eExample Output:
+Example input:
+mark_text: STARBUCKS 
+class : 030 
+status (active/pending/dead/all): active 
+Example Output:
 tOP 10 HIGHEST RISK CONFLICTS...
 and so on.
+
+# Instructions for API Access
+
+**Link of website:** https://www.atom.com/dashboard/seller/api-access
+
+**Steps to access the API:**
+
+1. Visit the website and sign up.
+2. After signing up, follow these steps:
+   - Click on **Create New Key**.
+   - Select **Trademark API**.
+   - Copy the generated key.
+3. In your User Dashboard (top-right corner), find **My ID** and copy the number.
+
+**Set the following environment variables:**
+
+- `ATOM_API_KEY` = *key generated from website*
+- `ATOM_USER_ID` = *My ID*
 
 # Trademark Descriptiveness Analyzer
 
