@@ -1,3 +1,17 @@
+# TARA AI — Trademark Application Risk Analyzer
+
+**TARA AI** is an AI-powered trademark analysis system that evaluates trademark applications and generates a structured legal risk assessment based on USPTO TMEP guidelines.
+
+The system analyzes trademark applications to detect:
+
+- Likelihood of confusion with existing marks
+- Descriptiveness and genericness risks
+- Classification issues
+- Structural validation errors
+- Legal risks affecting trademark registration
+
+TARA produces a comprehensive legal analysis and strategy recommendations to help improve the chances of trademark approval.
+
 # TradeMark Application Frontend Workflow
 
 - **User Uploads TradeMark Application PDF**
