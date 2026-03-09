@@ -7,6 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+<script type="module">
+  import { Client } from "https://cdn.jsdelivr.net/npm/@gradio/client/dist/index.min.js";
+  window.GradioClient = Client;
+</script>  
 <style>
   :root {
     --jade-900:#0d2b1f;--jade-800:#163d2c;--jade-700:#1e5239;--jade-600:#27664a;
@@ -248,7 +252,7 @@
           </svg>
         </div>
         <div>
-          <div class="brand-name">Jade AI</div>
+          <div class="brand-name">TARA AI</div>
           <div class="brand-sub">Trademark Risk Analysis</div>
         </div>
       </div>
@@ -259,7 +263,7 @@
         New Analysis
       </button>
     </div>
-    <div class="sidebar-section-label">Jade History</div>
+    <div class="sidebar-section-label">TARA History</div>
     <div class="chat-history" id="chatHistory"></div>
     <div class="sidebar-footer">
       <div class="user-info">
@@ -546,7 +550,7 @@ function buildMsgHtml(m) {
   return `<div class="msg-row ${isUser?'user':'ai'}" data-id="${m.id}">
     ${avatarHtml}
     <div class="msg-content">
-      <div class="msg-name">${isUser?'You':'Jade AI'}</div>
+      <div class="msg-name">${isUser?'You':'TARA AI'}</div>
       <div class="msg-bubble">${content}</div>
       ${actions}
     </div>
@@ -613,6 +617,11 @@ function prepareLLMInput(data) {
     data.confidence >= 0.7 ? "LOW" :
     data.confidence >= 0.4 ? "MEDIUM" : "HIGH";
 
+  const conflicts = data.mark_analysis || [];
+
+  const highRiskConflicts =
+    conflicts.filter(c => c.risk === "HIGH").length;
+
   return {
 
     application_overview: {
@@ -630,85 +639,430 @@ function prepareLLMInput(data) {
       confidence_score: data.confidence
     },
 
-    class_validation: data.classification_result?.details || null,
+    classification_analysis: data.classification_result?.details
+      ? {
+          claimed_class: data.classification_result.details.claimedClass,
+          suggested_class: data.classification_result.details.suggestedClass,
+          status: data.classification_result.details.claimedClassStatus,
+          confidence: data.classification_result.details.confidenceLevel
+        }
+      : null,
 
     conflict_analysis: {
-      total_conflicts: data.mark_analysis?.length || 0,
-      top_conflicts: (data.mark_analysis || []).slice(0,5)
+      total_conflicts: conflicts.length,
+      high_risk_conflicts: highRiskConflicts,
+      sample_conflicts: conflicts.slice(0,5).map(c => ({
+        conflicting_mark: c.conflicting_mark,
+        serial: c.serial,
+        risk: c.risk,
+        similarity_score: c.score
+      }))
     },
 
-    distinctiveness: data.trademark_analysis || null,
+    distinctiveness_analysis: data.trademark_analysis
+      ? {
+          descriptive_score: data.trademark_analysis.descriptive_score,
+          generic_score: data.trademark_analysis.generic_score,
+          semantic_similarity: {
+            embedding_term: data.trademark_analysis.details?.embedding_term,
+            embedding_goods: data.trademark_analysis.details?.embedding_goods,
+            cross_encoder: data.trademark_analysis.details?.cross_encoder
+          }
+        }
+      : null,
 
     validation_issues: [
-      ...(data.errors || []),
-      ...(data.warnings || [])
+      ...(data.errors || []).map(e => ({
+        issue: e,
+        severity: "HIGH"
+      })),
+      ...(data.warnings || []).map(w => ({
+        issue: w,
+        severity: "MEDIUM"
+      }))
     ]
+
   };
 }  
   
 async function generateLLMSummaryStreaming(llmJson) {
-
-  try {
-
-    const response = await fetch(
-      "https://shivam-99x-taraai.hf.space/llm-summary",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          report: llmJson
-        })
-      }
-    );
-
-    const result = await response.json();
-    const summaryText = result.summary;
-
-    streamSummaryToChat(summaryText);
-
-  } catch (err) {
-    console.error("LLM summary error:", err);
-  }
-}
-function streamSummaryToChat(text) {
-
+  // Create the AI message bubble first (empty)
   const s = getSession();
-
-  const aiMsg = {
-    id: uid(),
-    role: "ai",
-    text: "",
-    ts: Date.now()
-  };
-
+  const aiMsg = { id: uid(), role: "ai", text: "", ts: Date.now() };
   s.messages.push(aiMsg);
   appendMsg(aiMsg);
-  const llmInput = prepareLLMInput(data);
-  generateLLMSummaryStreaming(llmInput);
+  save();
+
   const msgElement = document.querySelector(
     `.msg-row[data-id="${aiMsg.id}"] .msg-bubble`
   );
 
+  // Show a loading placeholder
+  msgElement.innerHTML = `<em style="color:var(--stone-400);">Generating legal summary…</em>`;
+
+  try {
+    const response = await fetch("https://shivam-99x-taraai.hf.space/llm-summary", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ report: llmJson })
+    });
+
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.detail || `Server error ${response.status}`);
+    }
+
+    const result      = await response.json();
+    const summaryText = result.summary;
+
+    // ─── 3. Stream the text character by character ───
+    streamSummaryToChat(aiMsg, msgElement, summaryText);
+
+  } catch (err) {
+    console.error("LLM summary error:", err);
+    aiMsg.text = `⚠ Could not generate LLM summary: ${err.message}`;
+    msgElement.innerHTML = renderMarkdown(aiMsg.text);
+    save();
+  }
+}
+async function sendToTaraAI(llmJson) {
+  try {
+    // Wait for GradioClient module to load
+    let attempts = 0;
+    while (!window.GradioClient && attempts < 20) {
+      await new Promise(r => setTimeout(r, 300));
+      attempts++;
+    }
+    if (!window.GradioClient) throw new Error("Gradio client failed to load");
+
+    const client = await window.GradioClient.connect("shivam-99x/TARAagents");
+
+    const result = await client.predict("/analyze_trademark", {
+      report_json: JSON.stringify(llmJson)
+    });
+
+    if (!result?.data?.length) throw new Error("Empty output from TARA API");
+
+    const outer = result.data[0];
+    const taraInner = outer?.tara_analysis?.tara_analysis ?? outer?.tara_analysis ?? outer;
+    displayTaraAgentResults(taraInner);
+
+  } catch (err) {
+    const s = getSession();
+    if (!s) return;
+    const aiMsg = {
+      id: uid(), role: "ai",
+      text: `⚠ TARA agent pipeline error: ${err.message}`,
+      ts: Date.now()
+    };
+    s.messages.push(aiMsg);
+    appendMsg(aiMsg);
+    save();
+  }
+}
+
+
+function streamSummaryToChat(aiMsg, msgElement, text) {
+  const s = getSession();
   let index = 0;
 
   function typeChar() {
-
     if (index < text.length) {
-
       aiMsg.text += text[index];
       msgElement.innerHTML = renderMarkdown(aiMsg.text);
-
+      scrollBottom();
       index++;
-
-      setTimeout(typeChar, 12); // typing speed
-
+      setTimeout(typeChar, 0);
+    } else {
+      // Save final text once streaming is complete
+      save();
     }
-
   }
 
   typeChar();
+}
+
+function displayTaraAgentResults(tara) {
+  const s = getSession();
+  if (!s) return;
+
+  /* ── Normalise agent outputs ── */
+  const agent1Raw    = tara?.agent1_output ?? null;   // string OR object
+  const refusals     = tara?.agent2_output?.predicted_refusals ?? [];
+  const strategy     = tara?.agent3_output?.strategy_plan      ?? [];
+  const agent4Raw    = tara?.agent4_output ?? null;   // string OR object
+
+  /* ────────────────────────────────────────────────────
+     HELPER: render a markdown string into styled HTML
+     (reuses the page-level renderMarkdown if present,
+      otherwise falls back to a simple converter)
+  ──────────────────────────────────────────────────── */
+  function mdToHtml(text) {
+    if (typeof renderMarkdown === 'function') return renderMarkdown(text);
+
+    // Minimal fallback
+    return String(text)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/^### (.+)$/gm,'<h3>$1</h3>')
+      .replace(/^## (.+)$/gm,'<h2>$1</h2>')
+      .replace(/^# (.+)$/gm,'<h1>$1</h1>')
+      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g,'<em>$1</em>')
+      .replace(/^[\*\-] (.+)$/gm,'<li>$1</li>')
+      .replace(/(<li>.*<\/li>)/gs,'<ul>$1</ul>')
+      .replace(/\n{2,}/g,'</p><p>')
+      .replace(/^(?!<[hulopc])(.+)$/gm,'<p>$1</p>');
+  }
+
+  /* ────────────────────────────────────────────────────
+     HELPER: severity helpers (reused across agents 2 & 3)
+  ──────────────────────────────────────────────────── */
+  const sevColor = (sev) => {
+    const v = String(sev || '').toUpperCase();
+    if (v === 'HIGH')   return { css: 'risk-high',   icon: '⚠', label: 'High'   };
+    if (v === 'MEDIUM') return { css: 'risk-medium', icon: '◆', label: 'Medium' };
+    return                    { css: 'risk-low',    icon: '✓', label: 'Low'    };
+  };
+
+  /* ═══════════════════════════════════════════════════
+     START building the full HTML blob
+  ═══════════════════════════════════════════════════ */
+  let html = `
+  <div style="margin-bottom:12px;">
+    <strong style="font-family:var(--font-serif);font-size:17px;color:var(--jade-800);">
+      🤖 TARA Multi-Agent Legal Analysis
+    </strong>
+    <p style="font-size:12.5px;color:var(--stone-400);margin-top:4px;">
+      Four AI agents have reviewed your trademark application. Here is what they found.
+    </p>
+  </div>`;
+
+  /* ══════════════════════════════════════════════════
+     AGENT 1 — Risk Identification (TEXT BOX)
+  ══════════════════════════════════════════════════ */
+  if (agent1Raw) {
+    const agent1Html = typeof agent1Raw === 'string'
+      ? mdToHtml(agent1Raw)
+      : mdToHtml(JSON.stringify(agent1Raw, null, 2)); // graceful fallback if object
+
+    html += `
+    <div class="extract-card" style="margin-top:10px;">
+      <div class="extract-card-header">
+        <span class="extract-card-title">⚠ TARA Agent 1 — Risk Identification</span>
+      </div>
+
+      <!-- Styled prose text-box -->
+      <div style="
+        margin: 12px 14px;
+        padding: 16px 18px;
+        background: var(--paper);
+        border: 1px solid var(--jade-100);
+        border-left: 4px solid var(--jade-500);
+        border-radius: var(--radius-md);
+        font-size: 13.5px;
+        line-height: 1.8;
+        color: var(--stone-600);
+        box-shadow: var(--shadow-xs);
+      ">
+        <!-- inner headings / lists inherit msg-bubble styles via these inline overrides -->
+        <style>
+          .tara-agent1-box h1,
+          .tara-agent1-box h2,
+          .tara-agent1-box h3 {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            color: var(--jade-800);
+            margin: 14px 0 6px;
+            letter-spacing: -0.01em;
+            line-height: 1.35;
+          }
+          .tara-agent1-box h3 { font-size: 14px; }
+          .tara-agent1-box h2 { font-size: 15px; }
+          .tara-agent1-box h1 { font-size: 17px; }
+          .tara-agent1-box h1:first-child,
+          .tara-agent1-box h2:first-child,
+          .tara-agent1-box h3:first-child { margin-top: 0; }
+          .tara-agent1-box p  { margin: 0 0 8px; }
+          .tara-agent1-box p:last-child { margin-bottom: 0; }
+          .tara-agent1-box ul,
+          .tara-agent1-box ol { margin: 6px 0 6px 18px; display:flex; flex-direction:column; gap:3px; }
+          .tara-agent1-box li { line-height: 1.65; }
+          .tara-agent1-box strong { font-weight: 600; color: var(--jade-800); }
+          .tara-agent1-box em    { font-style: italic; }
+          .tara-agent1-box hr   { border:none; border-top:1px solid var(--fog); margin:12px 0; }
+        </style>
+        <div class="tara-agent1-box">${agent1Html}</div>
+      </div>
+    </div>`;
+  }
+
+  /* ══════════════════════════════════════════════════
+     AGENT 2 — Predicted Refusals  (KEEP EXISTING CARD FORMAT)
+  ══════════════════════════════════════════════════ */
+  if (refusals.length) {
+    html += `
+    <div class="extract-card" style="margin-top:10px;">
+      <div class="extract-card-header">
+        <span class="extract-card-title">📋 TARA Agent 2 — Likely USPTO Refusals</span>
+      </div>
+      <div style="padding:10px 16px 4px;font-size:12.5px;color:var(--stone-600);border-bottom:1px solid var(--fog);">
+        Based on the risks above, the USPTO may issue the following refusals when reviewing your application.
+      </div>
+      <div class="extract-card-body" style="padding:0;">`;
+
+    refusals.forEach((r, i) => {
+      html += `
+      <div style="padding:14px 16px;border-bottom:1px solid var(--fog);${i % 2 === 1 ? 'background:var(--jade-50);' : ''}">
+        <div style="display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap;margin-bottom:8px;">
+          <strong style="font-size:13.5px;color:var(--ink);">🚫 ${escHtml(r.refusal_type || '')}</strong>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+          ${r.legal_basis ? `
+          <div style="background:var(--mist);border:1px solid var(--fog);border-radius:var(--radius-sm);padding:8px 12px;">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+                        color:var(--stone-400);margin-bottom:3px;">Legal Basis</div>
+            <div style="font-size:12.5px;font-weight:600;color:var(--jade-800);">${escHtml(r.legal_basis)}</div>
+          </div>` : ''}
+          ${r.tmep_section ? `
+          <div style="background:var(--mist);border:1px solid var(--fog);border-radius:var(--radius-sm);padding:8px 12px;">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+                        color:var(--stone-400);margin-bottom:3px;">TMEP Section</div>
+            <div style="font-size:12.5px;font-weight:600;color:var(--jade-800);">${escHtml(r.tmep_section)}</div>
+          </div>` : ''}
+        </div>
+
+        ${r.evidence ? `
+        <div style="font-size:12px;color:var(--stone-500);line-height:1.6;">
+          <span style="font-weight:600;color:var(--stone-600);">Why: </span>${escHtml(r.evidence)}
+        </div>` : ''}
+      </div>`;
+    });
+
+    html += `</div></div>`;
+  }
+
+  /* ══════════════════════════════════════════════════
+     AGENT 3 — Strategy Plan  (KEEP EXISTING CARD FORMAT)
+  ══════════════════════════════════════════════════ */
+  if (strategy.length) {
+    html += `
+    <div class="extract-card" style="margin-top:10px;">
+      <div class="extract-card-header">
+        <span class="extract-card-title">🧭 TARA Agent 3 — Recommended Strategy to Overcome Refusals</span>
+      </div>
+      <div style="padding:10px 16px 4px;font-size:12.5px;color:var(--stone-600);border-bottom:1px solid var(--fog);">
+        For each predicted refusal, here is what you should do to address it.
+      </div>
+      <div class="extract-card-body" style="padding:0;">`;
+
+    strategy.forEach((step, i) => {
+      if (typeof step === 'string') {
+        html += `
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 16px;border-bottom:1px solid var(--fog);">
+          <span style="color:var(--jade-500);font-weight:700;flex-shrink:0;margin-top:2px;">›</span>
+          <span style="font-size:12.5px;color:var(--stone-600);">${escHtml(step)}</span>
+        </div>`;
+      } else {
+        const strats = step.recommended_strategies || [];
+        html += `
+        <div style="padding:14px 16px;border-bottom:1px solid var(--fog);${i % 2 === 1 ? 'background:var(--jade-50);' : ''}">
+          <strong style="font-size:13px;color:var(--ink);display:block;margin-bottom:4px;">
+            For: ${escHtml(step.refusal_type || '')}
+          </strong>
+          ${step.legal_basis ? `
+          <div style="font-size:11px;color:var(--stone-400);margin-bottom:8px;">
+            ${escHtml(step.legal_basis)}
+            ${step.tmep_section ? ` &nbsp;·&nbsp; TMEP §${escHtml(step.tmep_section)}` : ''}
+          </div>` : ''}
+          ${strats.map(st => `
+          <div style="display:flex;align-items:flex-start;gap:8px;padding:3px 0;">
+            <span style="color:var(--jade-500);font-weight:700;flex-shrink:0;">›</span>
+            <span style="font-size:12.5px;color:var(--stone-600);">${escHtml(st)}</span>
+          </div>`).join('')}
+        </div>`;
+      }
+    });
+
+    html += `</div></div>`;
+  }
+
+  /* ══════════════════════════════════════════════════
+     AGENT 4 — Application Improvements (TEXT BOX)
+  ══════════════════════════════════════════════════ */
+  if (agent4Raw) {
+    const agent4Html = typeof agent4Raw === 'string'
+      ? mdToHtml(agent4Raw)
+      : mdToHtml(JSON.stringify(agent4Raw, null, 2));
+
+    html += `
+    <div class="extract-card" style="margin-top:10px;">
+      <div class="extract-card-header">
+        <span class="extract-card-title">🛠 TARA Agent 4 — Application Improvements</span>
+      </div>
+
+      <!-- Styled prose text-box -->
+      <div style="
+        margin: 12px 14px;
+        padding: 16px 18px;
+        background: var(--paper);
+        border: 1px solid var(--jade-100);
+        border-left: 4px solid var(--jade-400);
+        border-radius: var(--radius-md);
+        font-size: 13.5px;
+        line-height: 1.8;
+        color: var(--stone-600);
+        box-shadow: var(--shadow-xs);
+      ">
+        <style>
+          .tara-agent4-box h1,
+          .tara-agent4-box h2,
+          .tara-agent4-box h3 {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            color: var(--jade-800);
+            margin: 14px 0 6px;
+            letter-spacing: -0.01em;
+            line-height: 1.35;
+          }
+          .tara-agent4-box h3 { font-size: 14px; }
+          .tara-agent4-box h2 { font-size: 15px; }
+          .tara-agent4-box h1 { font-size: 17px; }
+          .tara-agent4-box h1:first-child,
+          .tara-agent4-box h2:first-child,
+          .tara-agent4-box h3:first-child { margin-top: 0; }
+          .tara-agent4-box p  { margin: 0 0 8px; }
+          .tara-agent4-box p:last-child { margin-bottom: 0; }
+          .tara-agent4-box ul,
+          .tara-agent4-box ol { margin: 6px 0 6px 18px; display:flex; flex-direction:column; gap:3px; }
+          .tara-agent4-box li { line-height: 1.65; }
+          .tara-agent4-box strong { font-weight: 600; color: var(--jade-800); }
+          .tara-agent4-box em    { font-style: italic; }
+          .tara-agent4-box hr   { border:none; border-top:1px solid var(--fog); margin:12px 0; }
+        </style>
+        <div class="tara-agent4-box">${agent4Html}</div>
+      </div>
+    </div>`;
+  }
+
+  /* ── Fallback if all four outputs are empty/missing ── */
+  if (!agent1Raw && !refusals.length && !strategy.length && !agent4Raw) {
+    html += `
+    <div class="extract-card" style="margin-top:10px;">
+      <div class="extract-card-body">
+        <p style="font-size:13px;color:var(--stone-400);">TARA agents returned no output. Raw data:</p>
+        <pre style="font-size:11px;background:var(--mist);padding:10px;border-radius:6px;
+                    overflow-x:auto;white-space:pre-wrap;word-break:break-all;margin-top:8px;">
+${escHtml(JSON.stringify(tara, null, 2).slice(0, 2000))}</pre>
+      </div>
+    </div>`;
+  }
+
+  /* ── Push the assembled message into the chat ── */
+  const aiMsg = { id: uid(), role: "ai", richHtml: html, text: "[TARA Agent Analysis]", ts: Date.now() };
+  s.messages.push(aiMsg);
+  appendMsg(aiMsg);
+  save();
 }
 /* ════════════════════════════════════════════════
    BACKEND RESPONSE FORMATTER
@@ -743,7 +1097,7 @@ function buildExtractionHtml(data) {
   let html = `
   <div style="margin-bottom:4px;">
     <strong style="font-family:var(--font-serif);font-size:16px;color:var(--jade-800);">
-      Trademark Extraction Report
+      Trademark Risk Assessment Report
     </strong>
   </div>
   <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
@@ -891,7 +1245,7 @@ function buildExtractionHtml(data) {
       </div>`;
     });
     if (data.tables.length > 2) {
-      html += `<p style="padding:8px 14px;font-size:12px;color:var(--stone-400);">… and ${data.tables.length-2} more table(s) not shown</p>`;
+      html += `<p style="padding:8px 14px;font-size:12px;color:var(--stone-400);">… and ${data.tables.length-2} more table(s) are available</p>`;
     }
     html += `</div></div>`;
   }
@@ -918,7 +1272,7 @@ function buildExtractionHtml(data) {
     html += `
     <div class="extract-card" style="margin-top:8px;border-color:#fca5a5;">
       <div class="extract-card-header" style="background:#fee2e2;">
-        <span class="extract-card-title" style="color:#b91c1c;">⚖️ Conflict Analysis — Debug</span>
+        <span class="extract-card-title" style="color:#b91c1c;">⚖️ Likelihood of Confusion </span>
       </div>
       <div class="extract-card-body">
         <p style="font-size:12.5px;line-height:1.7;color:var(--stone-600);">${debugMsg}</p>
@@ -1036,7 +1390,7 @@ if (data.mark_analysis && Array.isArray(data.mark_analysis) && data.mark_analysi
   </div>`;
 }
 
-/* ── 8. Trademark Distinctiveness Analysis (explain_trademark_result logic) ── */
+/* ── 8. Trademark Descriptiveness Analysis (explain_trademark_result logic) ── */
 // ✅ FIX — change to const arrow functions inside the block
 if (data.trademark_analysis && data.trademark_analysis.descriptive_score != null) {
   const pct = (x) => {
@@ -1117,7 +1471,7 @@ if (data.trademark_analysis && data.trademark_analysis.descriptive_score != null
   html += `
   <div class="extract-card" style="margin-top:8px;">
     <div class="extract-card-header" style="justify-content:space-between;">
-      <span class="extract-card-title">🔍 Trademark Distinctiveness Analysis</span>
+      <span class="extract-card-title">🔍 Trademark Descriptiveness Analysis</span>
       <span class="risk-badge ${overallRisk.css}">${overallRisk.icon} ${overallRisk.label}</span>
     </div>
     <div class="extract-card-body">
@@ -1342,7 +1696,7 @@ function sendMessage() {
       const classif = data.classification_result?.details;
 
       const plainText = [
-        `Trademark Extraction Report`,
+        `Trademark Risk Assessment Report`,
         `Serial: ${data.serial_number||'N/A'} | Confidence: ${confPct}%`,
         `Applicant: ${data.applicant_name||'—'} | Mark: ${data.mark_text||'—'}`,
         `Classes: ${(data.classes||[]).join(', ')||'None'}`,
@@ -1360,18 +1714,46 @@ function sendMessage() {
       s.messages.push(aiMsg);
       s.updatedAt = Date.now(); save();
 
-      appendMsg(aiMsg);
+      appendMsg(aiMsg);  
+
+
+      const llmInput = prepareLLMInput(data);  
+
+      const jsonPreviewMsg = {
+        id: uid(), role: "ai",
+        richHtml: `
+        <details>
+          <summary style="cursor:pointer;font-size:12px;font-weight:600;color:var(--jade-700);
+                          padding:8px 12px;background:var(--jade-50);border:1px solid var(--jade-100);
+                          border-radius:var(--radius-sm);list-style:none;">
+            📤 JSON Sent to TARA Agents — click to expand
+          </summary>
+          <pre style="font-size:11px;background:var(--jade-900);color:#a8d5bb;
+                      padding:14px 16px;border-radius:0 0 var(--radius-sm) var(--radius-sm);
+                      overflow-x:auto;white-space:pre-wrap;word-break:break-all;margin:0;">
+      ${escHtml(JSON.stringify(llmInput, null, 2))}</pre>
+        </details>`,
+        text: "[TARA Input JSON]", ts: Date.now()
+      };
+      s.messages.push(jsonPreviewMsg);
+      appendMsg(jsonPreviewMsg);
+      save();
+
+
       removeFile();
       isTyping = false;
       updateSendBtn();
       document.getElementById('sessionLabel').textContent = 'Ready';
+      
+      generateLLMSummaryStreaming(llmInput);
+      sendToTaraAI(llmInput); 
     })
     .catch(err => {
       hideTyping();
       const errText = err && err.error ? err.error : (err.message || 'Unknown error');
       const aiMsg = {
         id:uid(), role:'ai',
-        text:`## ⚠ Processing Error\n\n\`${errText}\`\n\nPlease ensure you've attached a valid trademark PDF and the backend server is running.`,
+        text:`## ⚠ Processing Error\n\n\`${errText}\`\n\nPlease ensure you've attached a correct formated trademark PDF(.pdf file) and try again You just need to give a Trademark PDF rest leave on the TARA AI.`,
         ts:Date.now()
       };
       s.messages.push(aiMsg); s.updatedAt = Date.now(); save();
@@ -1418,7 +1800,7 @@ function clearCurrentChat() {
 function exportConversation() {
   const s = getSession();
   if (!s || !s.messages.length) { toast('Nothing to export'); return; }
-  const txt = s.messages.map(m => `[${m.role==='user'?'You':'Jade AI'}] ${fmtTime(m.ts)}\n${m.text}`).join('\n\n─────────────\n\n');
+  const txt = s.messages.map(m => `[${m.role==='user'?'You':'TARA AI'}] ${fmtTime(m.ts)}\n${m.text}`).join('\n\n─────────────\n\n');
   const blob = new Blob([txt],{type:'text/plain'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob); a.download=`jade-analysis-${Date.now()}.txt`;
