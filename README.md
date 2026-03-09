@@ -12,7 +12,71 @@ The system analyzes trademark applications to detect:
 
 TARA produces a comprehensive legal analysis and strategy recommendations to help improve the chances of trademark approval.
 
-# TradeMark Application Frontend Workflow
+# TARA Multi-Agent System
+
+TARA uses four specialized AI agents to generate legal analysis and strategies.
+
+Each agent focuses on a specific legal domain.
+
+## Agent 1 — Legal Risk Analyzer
+
+**Purpose:**
+- Identify potential grounds for trademark refusal based on TMEP rules.
+
+**Analyzes:**
+- likelihood of confusion
+- descriptiveness
+- genericness
+- classification issues
+- structural application errors
+
+**Outputs:**
+- detected legal risks
+- associated TMEP sections
+- severity of each risk
+
+## Agent 2 — TMEP Legal Mapper
+
+**Purpose:**
+- Map detected risks to relevant TMEP sections.
+
+**Legal Mappings:**
+| Risk Type | TMEP Section |
+| --- | --- |
+| Likelihood of Confusion | TMEP §1207 |
+| Merely Descriptive | TMEP §1209 |
+| Generic Terms | TMEP §1209.01 |
+| Incorrect Classification | TMEP §1402 |
+| Application Defects | TMEP §803 |
+
+**Outputs:**
+- precise legal references
+- explanation of legal basis
+
+## Agent 3 — Strategy Generator
+
+**Purpose:**
+- Generate practical solutions to resolve identified risks.
+
+**Example Strategies:**
+- For likelihood of confusion:
+  - modify the mark wording
+  - add distinctive elements
+  - narrow goods description 
+ 
+## Agent 4 — Legal Report Generator
+ 
+purpose:
+denerate the final legal report.
+ 
+the report includes:
+total trademark risk assessment,
+lst of detected legal risks,
+elevant TMep sections,
+estrategic recommendations,
+and confidence score
+
+# TARA WEB Application Frontend Workflow
 
 - **User Uploads TradeMark Application PDF**
   - │
